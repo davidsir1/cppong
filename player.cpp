@@ -1,7 +1,7 @@
 #include "player.h"
 
 Player::Player(){
-    player.setSize(sf::Vector2f(30.f, 150.f));
+    player.setSize(sf::Vector2f(20.f, 120.f));
     player.setFillColor(sf::Color::White);
     player.setOrigin(sf::Vector2f(0,0));
     player.setPosition(sf::Vector2f(5,0));
@@ -16,7 +16,6 @@ void Player::playerMove(sf::Window& window){
     }else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down)){
         speed += accel;
     }else{
-        // Quando a tecla deixa de ser pressionada, o jogador perde velocidade
         if(speed > 0){
             speed -= decel;
             if(speed < minSpeed) speed = 0;
