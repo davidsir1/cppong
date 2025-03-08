@@ -1,14 +1,22 @@
 GCC=g++
+FLAGS=-g -c
 OPTION=-lsfml-graphics -lsfml-window -lsfml-system
 COMPILE=$(GCC)
+OBJ=obj/player.o obj/ball.o obj/gamescore.o
 
 all: pong
 
-pong: main.cpp player.o ball.o
-	$(GCC) main.cpp player.o ball.o -g -o pong $(OPTION)
+pong: main.cpp $(OBJ)
+	$(GCC) main.cpp $(OBJ) -g -o pong $(OPTION)
 
-player.o: player.cpp player.h
-	$(GCC) -c player.cpp -g -o player.o
+obj/player.o: player.cpp player.h
+	$(GCC) $(FLAGS) player.cpp -o obj/player.o
 
-ball.o: ball.cpp ball.h
-	$(GCC) -c ball.cpp -g -o ball.o
+obj/ball.o: ball.cpp ball.h
+	$(GCC) $(FLAGS) ball.cpp -o obj/ball.o
+
+obj/gamescore.o: gamescore.cpp gamescore.h
+	$(GCC) $(FLAGS) gamescore.cpp -o obj/gamescore.o
+
+clean:
+	rm -rf *.o
