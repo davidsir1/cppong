@@ -4,7 +4,7 @@ OPTION=-lsfml-graphics -lsfml-window -lsfml-system
 COMPILE=$(GCC)
 OBJ=obj/player.o obj/ball.o obj/gamescore.o
 
-all: pong
+all: objects pong
 
 pong: main.cpp $(OBJ)
 	$(GCC) main.cpp $(OBJ) -g -o pong $(OPTION)
@@ -18,5 +18,8 @@ obj/ball.o: ball.cpp ball.h
 obj/gamescore.o: gamescore.cpp gamescore.h
 	$(GCC) $(FLAGS) gamescore.cpp -o obj/gamescore.o
 
+objects:
+	@mkdir -p obj
+
 clean:
-	rm -rf *.o
+	rm -rf obj/ pong
